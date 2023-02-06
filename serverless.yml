@@ -7,7 +7,7 @@ provider:
   region: us-west-1
 
 custom:
-  file-upload-bucket-mame: ${self:service}-bucket-${self:provider.stage}
+  file-upload-bucket-name: ${self:service}-bucket-${self:provider.stage}
 # you can add statements to the Lambda function's IAM Role here
 #  iam:
 #    role:
@@ -40,14 +40,17 @@ custom:
 
 functions:
   uploadImageToS3:
-    handler: handler.uploadImageToS3
+    handler: src/imageUploadToS3/handler.uploadImageToS3
+    name: s3-file-uploader
+    timeout: 60 # seconds
+    memorySize: 128 # mb
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
-#    events:
-#      - httpApi:
-#          path: /users/create
-#          method: get
+    events:
+      - httpApi:
+          path: /restaurant-menus
+          method: POST
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
@@ -87,7 +90,7 @@ resources:
    FileBucket:
      Type: AWS::S3::Bucket
      Properties:
-       BucketName: ${self:custom.file-upload-bucket-mame}
+       BucketName: ${self:custom.file-upload-bucket-name}
        AccessControl: PublicRead
 #  Outputs:
 #     NewOutput:
