@@ -42,7 +42,7 @@ functions:
   uploadImageToS3:
     handler: src/imageUploadToS3/handler.uploadImageToS3
     name: s3-file-uploader
-    timeout: 60 # seconds
+    timeout: 30 # seconds
     memorySize: 128 # mb
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
