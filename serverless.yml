@@ -19,17 +19,17 @@ functions:
     description: A lambda handler that uploads a file to an S3 bucket based on an API Gateway trigger.
     # timeout: 60 # seconds
     # memorySize: 128 # mb
-    # events:
-    #   - http:
-    #       path: images
-    #       method: POST
-    # iamRoleStatements:
-    #   - Effect: Allow
-    #     Action:
-    #       - "s3:Put*"
-    #     Resource: arn:aws:s3:::${self:custom.fileUploadBucketName}/*
-    # environment:
-    #   FILE_UPLOAD_BUCKET_NAME: ${self:custom.fileUploadBucketName}
+    events:
+      - http:
+          path: images
+          method: POST
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - "s3:Put*"
+        Resource: arn:aws:s3:::${self:custom.fileUploadBucketName}/*
+    environment:
+      FILE_UPLOAD_BUCKET_NAME: ${self:custom.fileUploadBucketName}
 
 resources:
   Resources:
