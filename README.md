@@ -1,10 +1,20 @@
-# Serverless File Upload API using Amazon S3, API Gateway & AWS Lambda
-![visitors](https://visitor-badge.glitch.me/badge?page_id=jacksonyuan-yt.s3-file-upload-api)
+## Serverless File Upload API using Amazon S3, API Gateway & AWS Lambda
 
 This repo holds the code for setting up a serverless file upload API pipeline using Amazon S3, API Gateway, and AWS Lambda.
 
-If you found this code example or video tutorial helpful, feel free to give the repo a **star** or **like/subscribe** on my YouTube channel!
+In order to run this repo:
 
-### Full Video Tutorial
-* [Part 1](https://www.youtube.com/watch?v=mWtnd-0Sm18)
-* [Part 2](https://www.youtube.com/watch?v=K-c0AoMmaOU)
+## Installation
+
+Install my-project with `yarn`
+
+```bash
+  cd foodrates-backend
+  yarn
+```
+
+Invoke a function locally:
+
+```bash
+  sls invoke local -f s3FileUploader
+```
