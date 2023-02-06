@@ -10,7 +10,7 @@ module.exports.handler = async (event) => {
     isBase64Encoded: false,
     statusCode: 200,
     body: JSON.stringify({
-      message: "Successfully updated the file on source.",
+      message: "Successfully updated the file on source. Policy changed",
     }),
   };
 
