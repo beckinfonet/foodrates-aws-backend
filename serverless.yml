@@ -6,6 +6,9 @@ provider:
   stage: dev
   region: us-west-1
 
+plugins:
+  - serverless-iam-roles-per-function
+
 custom:
   file-upload-bucket-name: ${self:service}-bucket-${self:provider.stage}
 # you can add statements to the Lambda function's IAM Role here
@@ -50,6 +53,13 @@ functions:
       - httpApi:
           path: /restaurant-menus
           method: POST
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - "s3:Put*"
+        Resource: arn:aws:s3:::${self:custom.file-upload-bucket-name}/*
+    environment:
+      FILE_UPLOAD_BUCKET_NAME: ${self:custom.file-upload-bucket-name}
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
