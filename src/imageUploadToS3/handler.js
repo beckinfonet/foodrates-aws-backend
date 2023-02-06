@@ -5,7 +5,7 @@ module.exports.uploadImageToS3 = async (event) => {
     statusCode: 200,
     body: JSON.stringify(
       {
-        message: "Go Serverless v10.0! Beck is testing the function now!",
+        message: "Go Serverless v1.0! Beck is testing the function now!",
         input: event,
       },
       null,
