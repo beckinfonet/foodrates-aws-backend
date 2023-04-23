@@ -28,6 +28,7 @@ const handler = async (event) => {
       Key: `images/${new Date().toISOString()}.jpeg`,
       Body: decodedFile,
       ContentType: "image/jpeg",
+      ACL: "public-read",
     };
 
     const uploadResult = await s3.upload(params).promise();
