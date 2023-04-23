@@ -1,11 +1,12 @@
 const AWS = require("aws-sdk");
 const s3 = new AWS.S3();
 
+const { cors } = require("middy/middlewares");
+const middy = require("middy");
+
 const BUCKET_NAME = process.env.FILE_UPLOAD_BUCKET_NAME;
 
-module.exports.handler = async (event) => {
-  console.log(event);
-
+const handler = async (event) => {
   const response = {
     isBase64Encoded: false,
     statusCode: 200,
@@ -16,6 +17,7 @@ module.exports.handler = async (event) => {
 
   try {
     const parsedBody = JSON.parse(event.body);
+    // const parsedBody = event.body; // for local development
     const base64File = parsedBody.file;
     const decodedFile = Buffer.from(
       base64File.replace(/^data:image\/\w+;base64,/, ""),
@@ -45,3 +47,6 @@ module.exports.handler = async (event) => {
 
   return response;
 };
+
+const s3FileUploader = middy(handler).use(cors());
+module.exports = { s3FileUploader };

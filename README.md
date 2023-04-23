@@ -16,5 +16,5 @@ Install my-project with `yarn`
 Invoke a function locally:
 
 ```bash
-  sls invoke local -f s3FileUploader
+  sls invoke local -f s3FileUploader --path testData/upload-image.json
 ```
